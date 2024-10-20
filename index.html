@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Beliefs</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #444;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .stat-card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card h2 {
+            font-size: 1.75rem;
+            color: #34495e;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+
+        .stat-card:hover h2 {
+            color: #3498db;
+        }
+
+        .real-stat {
+            font-size: 1rem;
+            color: #3498db;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .reveal-button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 10px;
+            border: 1px solid #2980b9;
+        }
+
+        .reveal-button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .show-stat {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            .stat-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Popular Beliefs</h1>
+
+    <div class="stats-container">
+        <!-- Existing Stats -->
+        <div class="stat-card" onclick="revealStat('real-stat-1')">
+            <h2>90% of People Graduate College</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-1" class="real-stat">Actually, only 64% of students graduate within 6 years in the U.S.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-2')">
+            <h2>Most People Live to 100 Years</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-2" class="real-stat">The average life expectancy is around 77 years in the U.S.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-3')">
+            <h2>85% of Graduates Get a Job Immediately</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-3" class="real-stat">Only about 53% secure a job within 6 months after graduating.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-4')">
+            <h2>You Need to Drink 8 Glasses of Water Daily</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-4" class="real-stat">There’s no fixed amount; hydration needs vary by individual.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-5')">
+            <h2>Shaving Makes Hair Grow Thicker</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-5" class="real-stat">Shaving doesn't affect the thickness or rate of hair growth.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-6')">
+            <h2>Humans Only Use 10% of Their Brain</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-6" class="real-stat">Humans use virtually all parts of their brain throughout the day.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-7')">
+            <h2>Sugar Causes Hyperactivity in Kids</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-7" class="real-stat">Studies show no strong evidence linking sugar to hyperactivity.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-8')">
+            <h2>Lightning Never Strikes the Same Place Twice</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-8" class="real-stat">Lightning can and often does strike the same place multiple times.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-9')">
+            <h2>Goldfish Have a 3-Second Memory</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-9" class="real-stat">Goldfish have memories that last for months.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-10')">
+            <h2>Cracking Knuckles Causes Arthritis</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-10" class="real-stat">There’s no evidence linking knuckle-cracking to arthritis.</p>
+        </div>
+
+        <!-- Additional Stats -->
+        <div class="stat-card" onclick="revealStat('real-stat-11')">
+            <h2>Dogs Sweat Through Their Tongues</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-11" class="real-stat">Dogs primarily regulate their temperature by panting, not sweating.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-12')">
+            <h2>Eating Carrots Improves Your Vision</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-12" class="real-stat">While carrots are good for your eyes, they don't improve vision significantly.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-13')">
+            <h2>Cold Weather Causes Colds</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-13" class="real-stat">Colds are caused by viruses, not cold temperatures.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-14')">
+            <h2>Humans Swallow an Average of 8 Spiders a Year</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-14" class="real-stat">This is a myth; it is highly unlikely that anyone swallows spiders while sleeping.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-15')">
+            <h2>Alcohol Warms You Up</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-15" class="real-stat">Alcohol causes blood vessels to dilate, leading to heat loss.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-16')">
+            <h2>Fortune Cookies Are a Chinese Tradition</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-16" class="real-stat">Fortune cookies originated in the U.S., not China.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-17')">
+            <h2>Reading in Dim Light Harms Your Eyes</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-17" class="real-stat">It may cause eye strain, but it doesn't cause permanent damage.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-18')">
+            <h2>All Crystals Are Healing</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-18" class="real-stat">While crystals can have aesthetic appeal, there is no scientific evidence for healing properties.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-19')">
+            <h2>Bananas Grow on Trees</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-19" class="real-stat">Bananas grow on large herbaceous plants, not trees.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-20')">
+            <h2>Horses Can Sleep Standing Up</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-20" class="real-stat">Horses can rest while standing, but they need to lie down to get REM sleep.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-21')">
+            <h2>Touching Baby Birds Will Make Their Mothers Reject Them</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-21" class="real-stat">Most birds have a limited sense of smell and won't reject their young.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-22')">
+            <h2>There Are 7 Colors in a Rainbow</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-22" class="real-stat">Rainbows are a spectrum of colors; some can see more than seven colors.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-23')">
+            <h2>Peanuts Are Nuts</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-23" class="real-stat">Peanuts are legumes, not true nuts.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-24')">
+            <h2>More People Die in Plane Crashes than Car Accidents</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-24" class="real-stat">Car accidents are far more common and deadly than plane crashes.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-25')">
+            <h2>Wearing a Hat Causes Hair Loss</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-25" class="real-stat">Wearing hats does not cause baldness or hair loss.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-26')">
+            <h2>Touching a Toad Causes Warts</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-26" class="real-stat">Warts are caused by a virus, not by touching toads.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-27')">
+            <h2>Chameleons Change Color to Blend In</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-27" class="real-stat">Chameleons change color for communication and temperature regulation, not just camouflage.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-28')">
+            <h2>Gum Takes 7 Years to Digest</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-28" class="real-stat">Gum passes through the digestive system in the same way as other foods.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-29')">
+            <h2>Eating Chocolate Causes Acne</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-29" class="real-stat">There’s no direct evidence linking chocolate consumption to acne.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-30')">
+            <h2>Myth of the 5-Second Rule</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-30" class="real-stat">Bacteria can transfer to food almost instantly, regardless of how long it has been on the floor.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-31')">
+            <h2>You Should Wait an Hour After Eating to Swim</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-31" class="real-stat">There is no evidence to support this; swimming after eating is safe.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-32')">
+            <h2>Vegetarians Don't Get Enough Protein</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-32" class="real-stat">With proper planning, vegetarians can get all the protein they need.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-33')">
+            <h2>Electric Eels Are Eels</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-33" class="real-stat">Electric eels are actually a type of knifefish, not true eels.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-34')">
+            <h2>All Swans Are Monogamous</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-34" class="real-stat">While many swans are monogamous, some may switch partners.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-35')">
+            <h2>Fish Have Short Memories</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-35" class="real-stat">Fish can have memories lasting weeks to months.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-36')">
+            <h2>Snakes Can Hypnotize Their Prey</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-36" class="real-stat">Snakes do not hypnotize; they rely on stealth and ambush.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-37')">
+            <h2>Humans Have the Most Advanced Brain</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-37" class="real-stat">While human brains are complex, other species exhibit unique intelligence.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-38')">
+            <h2>Black Cats Bring Bad Luck</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-38" class="real-stat">In many cultures, black cats are seen as symbols of good luck.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-39')">
+            <h2>Frogs Can Jump Out of Boiling Water</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-39" class="real-stat">Frogs may stay in hot water until it's too late; it's a myth.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-40')">
+            <h2>People Swallow a Lot of Hair</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-40" class="real-stat">It’s unlikely that anyone swallows enough hair to cause harm.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-41')">
+            <h2>Pigeons Are Dirty Birds</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-41" class="real-stat">Pigeons can be clean, and many are raised as pets.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-42')">
+            <h2>Spicy Food Causes Ulcers</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-42" class="real-stat">Spicy food doesn’t cause ulcers; bacteria do.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-43')">
+            <h2>All Bacteria Are Harmful</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-43" class="real-stat">Many bacteria are beneficial and essential for health.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-44')">
+            <h2>Touching a Frog Gives You Warts</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-44" class="real-stat">Warts are caused by a virus, not frogs.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-45')">
+            <h2>More Taste Buds Mean More Flavor</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-45" class="real-stat">The number of taste buds varies by person, but does not necessarily equate to flavor sensitivity.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-46')">
+            <h2>Muscles Turn to Fat if You Stop Exercising</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-46" class="real-stat">Muscle tissue cannot turn into fat; they are different types of tissue.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-47')">
+            <h2>You Can't See the Great Wall of China from Space</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-47" class="real-stat">The Great Wall is not visible from low Earth orbit without aid.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-48')">
+            <h2>Drinking Milk Causes Mucus Production</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-48" class="real-stat">There is no scientific evidence linking milk consumption to increased mucus production.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-49')">
+            <h2>Goldfish Can Live in Bowls Forever</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-49" class="real-stat">Goldfish require adequate space and care to thrive; bowls are often inadequate.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-50')">
+            <h2>Cell Phones Cause Cancer</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-50" class="real-stat">Current research does not conclusively link cell phone use to cancer.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-51')">
+            <h2>Starfish Have No Brains</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-51" class="real-stat">Starfish have a decentralized nerve net and can respond to stimuli.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-52')">
+            <h2>Blue Whales Are the Largest Animals Ever</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-52" class="real-stat">Blue whales are indeed the largest animals ever, surpassing even the largest dinosaurs.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-53')">
+            <h2>Hummingbirds Can't Walk</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-53" class="real-stat">Hummingbirds can walk, but they prefer to fly.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-54')">
+            <h2>Cats Always Land on Their Feet</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-54" class="real-stat">Cats usually land on their feet but can be injured in falls from great heights.</p>
+        </div>
+
+        <div class="stat-card" onclick="revealStat('real-stat-55')">
+            <h2>Vikings Wore Horned Helmets</h2>
+            <button class="reveal-button">Reveal Real Stat</button>
+            <p id="real-stat-55" class="real-stat">There is no evidence that Vikings wore horned helmets; this is a popular myth.</p>
+        </div>
+    </div>
+
+    <script>
+        function revealStat(id) {
+            var stat = document.getElementById(id);
+            stat.classList.toggle('show-stat');
+        }
+    </script>
+
+</body>
+</html>
